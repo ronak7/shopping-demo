@@ -1,0 +1,107 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-tabs">
+                <li class="nav-link"><a data-toggle="tab" href="#home">Add Product</a></li>
+                <li class="nav-link"><a data-toggle="tab" href="#menu1">Product List</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <form #addProduct="ngForm" name="addProduct"
+                        (ngSubmit)="addProduct.valid && createProduct(addProduct)" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name">Item Name:</label>
+                            <input type="text" class="form-control" [(ngModel)]="product.name" name="name"
+                                placeholder="Enter name" #name="ngModel" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div *ngIf="(name.errors && name.touched)">Please fill out this field.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Item Price:</label>
+                            <input type="text" class="form-control" id="price" [(ngModel)]="product.price"
+                                #price="ngModel" placeholder="Enter price" name="price" required pattern="(^[0-9]+$)">
+                            <div *ngIf="(price.errors?.pattern && price.touched)">Invalid input.</div>
+                            <div *ngIf="price.errors?.required && price.touched">Required field.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Item Image:</label>
+                            <input type="file" class="form-control" id="file" name="file" accept="image/*" (change)="upload($event)" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <div id="menu1" class="tab-pane fade">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Item Price</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let prod of productList">
+                                <td>
+                                    <img class="card-img-top" src="{{serverURL}}/{{prod.image}}" alt="{{prod.name}}"
+                                        style="width:50px">
+                                </td>
+                                <td>{{prod.name}}</td>
+                                <td>{{prod.price}}</td>
+                                <td colspan="2">
+                                    <!-- <button type="button" (click)="updateProduct(prod)" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Edit</button> &nbsp;&nbsp; -->
+                                    <button type="button" class="btn btn-primary btn-md"
+                                        (click)="updateproduct(prod._id)">Edit</button> &nbsp;
+                                    <button type="button" class="btn btn-primary btn-md"
+                                        (click)="deleteProduct(prod._id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Update Product</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <form #updateProduct="ngForm" name="updateProduct" (ngSubmit)="updateProduct.valid && updateproductdata(updateProduct)" enctype="multipart/form-data">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Item Name:</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.name" name="name"
+                            placeholder="Enter name" #uname="ngModel" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div *ngIf="(uname.errors && uname.touched)">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Item Price:</label>
+                        <input type="text" class="form-control" id="price" [(ngModel)]="product.price" #uprice="ngModel"
+                            placeholder="Enter price" name="price" required pattern="(^[0-9]+$)">
+                        <div *ngIf="(uprice.errors?.pattern && uprice.touched)">Invalid input.</div>
+                        <div *ngIf="uprice.errors?.required && uprice.touched">Required field.</div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+
+<div class="card">
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li class="nav-link"><a data-toggle="tab" href="#home">Add Product</a></li>
+            <li class="nav-link"><a data-toggle="tab" href="#menu1">Product List</a></li>
+        </ul>
+        
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>Products Details</h3>
+                <form class="needs-validation">
+                    <div class="form-group">
+                        <label for="name">Item Name:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter name" name="uname" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Item Price:</label>
+                        <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Item Image:</label>
+                        <input type="file" class="form-control" id="file" name="file" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <div id="menu1" class="tab-pane fade">
+                <h3>Product List</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Item Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John</td>
+                            <td>Doe</td>
+                            <td>john@example.com</td>
+                        </tr>
+                        <tr>
+                            <td>Mary</td>
+                            <td>Moe</td>
+                            <td>mary@example.com</td>
+                        </tr>
+                        <tr>
+                            <td>July</td>
+                            <td>Dooley</td>
+                            <td>july@example.com</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

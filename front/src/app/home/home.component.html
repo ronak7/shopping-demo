@@ -1,0 +1,70 @@
+
+<div class="container-fluid">
+    <div class="search-results" infinite-scroll (scrolled)="onScrollDown($event)">
+        <div class="card">
+            <div class="card-header">Product List</div>
+            <div class="card-body">
+                <div class="card-columns">
+                    <div class="card bg-light" *ngFor="let prod of listArray" style="width: 10rem; height: 15%;">
+                        <img class="card-img-top" src="{{serverURL}}/{{prod.image}}" alt="{{prod.name}}" style="width:10rem; height: 10rem;">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{prod.name}}</h4>
+                            <p class="card-text">{{prod.price}}</p>
+                            <button class="btn btn-sm btn-primary" (click)="addToCart(prod, true)">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    
+    <div class="card-header">Cart Details</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Product details</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Sub Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="cartProductList">
+                    <tr *ngFor="let cp of cartProductList.products; let i = index">
+                        <td>
+                            <img src="{{serverURL}}/{{cp.image}}" alt="{{cp.name}}" style="width:20%">
+                        </td>
+                        <td>{{cp.name}}</td>
+                        <td>{{cp.price}}</td>
+                        <td>
+                            <button value="" (click)="incDicNumber(cartProductList._id, cp.productId, true, false, cp.qty)">
+                                <i class="bi bi-plus-circle-fill"></i>
+                            </button>
+                            <input type="text" name="qty" value="{{cp.qty}}" (change)="incDicNumber(cartProductList._id, cp.productId, false, false, $event.target, true)" readonly>
+                            <button value="" (click)="incDicNumber(cartProductList._id, cp.productId, false, true, cp.qty)"> 
+                                <i class="bi bi-dash-circle-fill"></i>
+                            </button>
+                        </td>
+                        <!-- <td>{{cp.total}}</td> -->
+                        <td>{{cp.qty * cp.price}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" (click)="removeItemFromCart(cartProductList._id, cp.productId)">Remove Item</button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td align="right"><b>Total:</b></td>
+                    <td>{{cartProductList ? cartProductList.subtotal : ''}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

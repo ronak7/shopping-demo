@@ -1,0 +1,7 @@
+.search-results-container{
+    margin: 40px;
+    height: 350px;
+    width: 500px;
+    overflow: auto;
+    color: black;
+}

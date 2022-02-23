@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "620bea26647088d667de3eeb"
+  },
+  "user": 1,
+  "status": false,
+  "createdAt": {
+    "$date": "2022-02-15T17:45:02.904Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-15T17:45:02.904Z"
+  },
+  "products": [
+    {
+      "productId": "620a3ce0f70ee7bd0bd97d31",
+      "name": "product2",
+      "price": 124,
+      "qty": 5,
+      "total": 620,
+      "image": "file-1644838112059.png",
+      "_id": {
+        "$oid": "620cb617feb9af52f9643fd1"
+      }
+    },
+    {
+      "productId": "620cb650feb9af52f9643ffd",
+      "name": "product2",
+      "price": 232,
+      "qty": 1,
+      "total": 232,
+      "image": "file-1645000272614.jpg",
+      "_id": {
+        "$oid": "620cba800c003c542ea932ae"
+      }
+    }
+  ],
+  "subtotal": 852,
+  "__v": 21
+}]
